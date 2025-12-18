@@ -1,0 +1,17 @@
+# Core scientific stack
+numpy>=1.23
+pandas>=1.5
+scipy>=1.10
+scikit-learn>=1.2
+matplotlib>=3.7
+
+# Testing
+pytest>=7.4
+
+# additional (uncomment if needed)
+seaborn>=0.12
+hdbscan>=0.8
+networkx>=3.0
+
+
+

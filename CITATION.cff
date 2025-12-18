@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "ClusTEK"
+version: 0.2.0
+date-released: 2025-12-17
+authors:
+  - family-names: "Tourani"
+    given-names: "Elyar"
+repository-code: "https://github.com/etourani/ClusTEK"
+license: MIT
+keywords:
+  - clustering
+  - molecular dynamics
+  - grid clustering
+  - diffusion imputation
+  - connected components

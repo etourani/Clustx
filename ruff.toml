@@ -1,0 +1,24 @@
+line-length = 100
+target-version = "py39"
+
+[lint]
+select = [
+  "E",   # pycodestyle errors
+  "F",   # pyflakes
+  "W",   # pycodestyle warnings
+  "I",   # import sorting
+  "UP",  # pyupgrade
+  "B",   # bugbear
+  "C90", # mccabe complexity
+]
+ignore = [
+  "E501",  # line length (we control with line-length above)
+]
+
+[format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+docstring-code-format = true
+
+
