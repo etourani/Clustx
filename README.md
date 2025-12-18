@@ -5,8 +5,8 @@
 
 This repository contains:
 
-- **2D pipeline** (packaged; originally developed as `clustx`)
-- **3D engine** (`ClusTEK3D`) refactored from your research scripts into a reusable module
+- **2D pipeline** 
+- **3D engine** 
 
 ## Key ideas
 
