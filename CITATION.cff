@@ -3,14 +3,11 @@ message: "If you use this software, please cite it as below."
 title: "ClusTEK"
 version: 0.2.0
 date-released: 2025-12-17
-authors:
-  - family-names: "Tourani"
-    given-names: "Elyar"
+authors: "Tourani, E., Edwards, J. B., Khomami, B."
 repository-code: "https://github.com/etourani/ClusTEK"
-license: MIT
+license: MIT-style
 keywords:
-  - clustering
-  - molecular dynamics
   - grid clustering
+  - molecular dynamics
   - diffusion imputation
-  - connected components
+  - connected components analysis
