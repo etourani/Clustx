@@ -1,0 +1,114 @@
+Metadata-Version: 2.4
+Name: clustek
+Version: 0.2.0
+Summary: ClusTEK: diffusion-imputation + origin-constrained connected components for fast grid clustering
+Author: Elyar Tourani
+License: MIT
+Keywords: clustering,molecular-dynamics,grid,diffusion,CCA
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.22
+Requires-Dist: pandas>=1.4
+Requires-Dist: matplotlib>=3.6
+Requires-Dist: seaborn>=0.12
+Requires-Dist: scipy>=1.8
+Requires-Dist: scikit-learn>=1.1
+Provides-Extra: dev
+Requires-Dist: pytest>=7; extra == "dev"
+Requires-Dist: ruff>=0.6; extra == "dev"
+Provides-Extra: bo
+Requires-Dist: scikit-optimize>=0.9; extra == "bo"
+Provides-Extra: all
+Requires-Dist: scikit-optimize>=0.9; extra == "all"
+Requires-Dist: pytest>=7; extra == "all"
+Requires-Dist: ruff>=0.6; extra == "all"
+Dynamic: license-file
+
+# ClusTEK
+
+**ClusTEK** is a fast, morphology-aware clustering toolkit for molecular simulation data, built around
+**grid aggregation + diffusion imputation + connected-component clustering**.
+
+This repository contains:
+
+- **2D pipeline** (packaged; originally developed as `clustx`)
+- **3D engine** (`ClusTEK3D`) refactored from your research scripts into a reusable module
+
+## Key ideas
+
+1. **Grid aggregation:** bin particles into mesh cells and compute a cell-averaged order parameter (e.g., `c_label`).
+2. **Diffusion imputation (optional):** stabilize sparse/noisy grids by diffusing the cell field under periodic BCs.
+3. **Connected components:** cluster selected cells via fast neighborhood connectivity (KDTree / union-find).
+
+## Install
+
+From the repo root:
+
+```bash
+pip install -e ".[dev]"
+```
+
+> Requirements are intentionally standard scientific Python. Some 3D “extras” (alpha-shape surface reconstruction, etc.)
+> are optional and can be added later as the paper/release matures.
+
+## Quickstart
+
+### 3D (single snapshot)
+
+```python
+import pandas as pd
+from clustek import ClusTEK3D
+from clustek.core3d import DiffusionParams
+
+df = pd.read_csv("snapshot.csv")  # must include x,y,z,c_label and xlo/xhi/ylo/yhi/zlo/zhi
+
+engine = ClusTEK3D(df, cell_size=(1.0, 1.0, 1.0), label_thr=0.4, label_col="c_label")
+engine.particles_to_meshes()
+
+selected = engine.compute_filtered_cells(use_diffusion=True, diffusion=DiffusionParams(beta=0.1, iters=500))
+cell_clusters = engine.cluster_cells(selected)
+
+print(f"Selected cells: {len(selected)}")
+print(f"Grid clusters:  {len(cell_clusters)}")
+```
+
+### 2D
+
+The original packaged 2D pipeline is available as:
+
+```python
+from clustek import run_pipeline_2d
+```
+
+(See `examples/2d_quickstart.ipynb` for a fuller run.)
+
+## Reproducible benchmark scripts
+
+- `examples/run_benchmark_3d.py` — template driver for scanning `(cell_size, C_thr)` and recording runtime/memory.
+
+## Development
+
+Run tests:
+
+```bash
+pytest -q
+```
+
+Lint (optional):
+
+```bash
+ruff check .
+```
+
+## Citation
+
+If you use ClusTEK in academic work, please cite:
+
+- Tourani, E. (2025). *ClusTEK: Diffusion-imputation + connected components grid clustering*. GitHub repository.
+
+A paper citation can be added here once published.
+
+## License
+
+MIT — see `LICENSE`.

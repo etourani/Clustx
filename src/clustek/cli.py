@@ -4,7 +4,7 @@ import argparse
 import json
 import sys
 
-from .core import run_pipeline_2d
+from .core2d import run_pipeline_2d
 
 
 def _parse_float_list(s: str):
