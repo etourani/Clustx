@@ -3,9 +3,16 @@ message: "If you use this software, please cite it as below."
 title: "ClusTEK"
 version: 0.2.0
 date-released: 2025-12-17
-authors: "Tourani, E., Edwards, J. B., Khomami, B."
+authors:
+  - family-names: Tourani
+    given-names: E.
+  - family-names: Edwards
+    given-names: J. B.
+  - family-names: Khomami
+    given-names: B.
 repository-code: "https://github.com/etourani/ClusTEK"
-license: MIT-style
+license: "Custom"
+license-url: "https://github.com/etourani/ClusTEK/LICENSE"
 keywords:
   - grid clustering
   - molecular dynamics
